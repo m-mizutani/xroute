@@ -15,10 +15,10 @@ type Policy struct {
 func (x *Policy) Flags() []cli.Flag {
 	return []cli.Flag{
 		&cli.StringFlag{
-			Name:        "policy-path",
+			Name:        "policy",
 			Aliases:     []string{"p"},
 			Usage:       "Path to policy files or directory",
-			Sources:     cli.EnvVars("TRANSMITH_POLICY_PATH"),
+			Sources:     cli.EnvVars("TRANSMITH_POLICY"),
 			Destination: &x.path,
 		},
 	}
