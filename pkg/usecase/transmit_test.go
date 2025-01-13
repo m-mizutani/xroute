@@ -7,10 +7,10 @@ import (
 
 	"github.com/m-mizutani/gt"
 	"github.com/m-mizutani/opac"
-	"github.com/m-mizutani/transmith/pkg/adapter"
-	"github.com/m-mizutani/transmith/pkg/domain/model"
-	"github.com/m-mizutani/transmith/pkg/mock"
-	"github.com/m-mizutani/transmith/pkg/usecase"
+	"github.com/m-mizutani/xroute/pkg/adapter"
+	"github.com/m-mizutani/xroute/pkg/domain/model"
+	"github.com/m-mizutani/xroute/pkg/mock"
+	"github.com/m-mizutani/xroute/pkg/usecase"
 	"github.com/slack-go/slack"
 )
 

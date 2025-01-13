@@ -1,6 +1,6 @@
 package usecase
 
-import "github.com/m-mizutani/transmith/pkg/adapter"
+import "github.com/m-mizutani/xroute/pkg/adapter"
 
 type UseCases struct {
 	adaptors *adapter.Adapters

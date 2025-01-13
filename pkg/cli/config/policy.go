@@ -18,7 +18,7 @@ func (x *Policy) Flags() []cli.Flag {
 			Name:        "policy",
 			Aliases:     []string{"p"},
 			Usage:       "Path to policy files or directory",
-			Sources:     cli.EnvVars("TRANSMITH_POLICY"),
+			Sources:     cli.EnvVars("XROUTE_POLICY"),
 			Destination: &x.path,
 		},
 	}

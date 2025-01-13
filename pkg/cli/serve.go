@@ -8,11 +8,11 @@ import (
 	"time"
 
 	"github.com/m-mizutani/goerr/v2"
-	"github.com/m-mizutani/transmith/pkg/adapter"
-	"github.com/m-mizutani/transmith/pkg/cli/config"
-	http_server "github.com/m-mizutani/transmith/pkg/controller/http"
-	"github.com/m-mizutani/transmith/pkg/usecase"
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/adapter"
+	"github.com/m-mizutani/xroute/pkg/cli/config"
+	http_server "github.com/m-mizutani/xroute/pkg/controller/http"
+	"github.com/m-mizutani/xroute/pkg/usecase"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 	"github.com/urfave/cli/v3"
 )
 
@@ -30,7 +30,7 @@ func cmdServe() *cli.Command {
 			Aliases:     []string{"a"},
 			Value:       "localhost:8080",
 			Usage:       "Address to listen on",
-			Sources:     cli.EnvVars("TRANSMITH_ADDR"),
+			Sources:     cli.EnvVars("XROUTE_ADDR"),
 			Destination: &addr,
 		},
 	},

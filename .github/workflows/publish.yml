@@ -4,10 +4,10 @@ on:
   push:
 
 env:
-  TAG_NAME: transmith:${{ github.sha }}
+  TAG_NAME: xroute:${{ github.sha }}
   BUILD_VERSION: ${{ github.sha }}
-  GITHUB_IMAGE_REPO: ghcr.io/${{ github.repository_owner }}/transmith
-  GITHUB_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/transmith:${{ github.sha }}
+  GITHUB_IMAGE_REPO: ghcr.io/${{ github.repository_owner }}/xroute
+  GITHUB_IMAGE_NAME: ghcr.io/${{ github.repository_owner }}/xroute:${{ github.sha }}
 
 jobs:
   build:

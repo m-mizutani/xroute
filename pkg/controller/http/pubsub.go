@@ -11,10 +11,10 @@ import (
 	"github.com/lestrrat-go/jwx/v2/jwk"
 	"github.com/lestrrat-go/jwx/v2/jwt"
 	"github.com/m-mizutani/goerr/v2"
-	"github.com/m-mizutani/transmith/pkg/domain/interfaces"
-	"github.com/m-mizutani/transmith/pkg/domain/model"
-	"github.com/m-mizutani/transmith/pkg/domain/types"
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/domain/interfaces"
+	"github.com/m-mizutani/xroute/pkg/domain/model"
+	"github.com/m-mizutani/xroute/pkg/domain/types"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 )
 
 type pubsubMessage struct {

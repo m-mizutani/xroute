@@ -1,4 +1,4 @@
-module github.com/m-mizutani/transmith
+module github.com/m-mizutani/xroute
 
 go 1.23.4
 

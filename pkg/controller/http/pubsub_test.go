@@ -9,9 +9,9 @@ import (
 	"testing"
 
 	"github.com/m-mizutani/gt"
-	"github.com/m-mizutani/transmith/pkg/controller/http"
-	"github.com/m-mizutani/transmith/pkg/domain/model"
-	"github.com/m-mizutani/transmith/pkg/mock"
+	"github.com/m-mizutani/xroute/pkg/controller/http"
+	"github.com/m-mizutani/xroute/pkg/domain/model"
+	"github.com/m-mizutani/xroute/pkg/mock"
 )
 
 //go:embed testdata/pubsub_json.json

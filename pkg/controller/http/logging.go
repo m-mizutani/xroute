@@ -5,7 +5,7 @@ import (
 	"time"
 
 	"github.com/google/uuid"
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 )
 
 type statusWriter struct {

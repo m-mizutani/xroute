@@ -3,7 +3,7 @@ package interfaces
 import (
 	"context"
 
-	"github.com/m-mizutani/transmith/pkg/domain/model"
+	"github.com/m-mizutani/xroute/pkg/domain/model"
 )
 
 type UseCases interface {

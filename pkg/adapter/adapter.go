@@ -1,6 +1,6 @@
 package adapter
 
-import "github.com/m-mizutani/transmith/pkg/domain/interfaces"
+import "github.com/m-mizutani/xroute/pkg/domain/interfaces"
 
 type Adapters struct {
 	slack  interfaces.Slack

@@ -9,8 +9,8 @@ import (
 
 	"github.com/go-test/deep"
 	"github.com/m-mizutani/gt"
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
-	"github.com/m-mizutani/transmith/pkg/utils/safe"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/utils/safe"
 )
 
 type mockWriter struct {

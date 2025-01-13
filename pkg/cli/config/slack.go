@@ -18,7 +18,7 @@ func (x *Slack) Flags() []cli.Flag {
 			Aliases:     []string{"t"},
 			Usage:       "Slack OAuth token. If empty, Slack integration is disabled",
 			Value:       "",
-			Sources:     cli.EnvVars("TRANSMITH_SLACK_OAUTH_TOKEN"),
+			Sources:     cli.EnvVars("XROUTE_SLACK_OAUTH_TOKEN"),
 			Destination: &x.token,
 		},
 	}

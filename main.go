@@ -4,7 +4,7 @@ import (
 	"context"
 	"os"
 
-	"github.com/m-mizutani/transmith/pkg/cli"
+	"github.com/m-mizutani/xroute/pkg/cli"
 )
 
 func main() {

@@ -4,8 +4,8 @@ import (
 	"context"
 
 	"github.com/m-mizutani/goerr/v2"
-	"github.com/m-mizutani/transmith/pkg/domain/model"
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/domain/model"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 )
 
 func (x *UseCases) Transmit(ctx context.Context, msg model.Message) error {

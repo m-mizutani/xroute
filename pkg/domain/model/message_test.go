@@ -5,7 +5,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/m-mizutani/transmith/pkg/domain/model"
+	"github.com/m-mizutani/xroute/pkg/domain/model"
 )
 
 func TestNewGoogleIDToken(t *testing.T) {

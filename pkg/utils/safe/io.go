@@ -4,7 +4,7 @@ import (
 	"context"
 	"io"
 
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 )
 
 func Write(ctx context.Context, w io.Writer, data []byte) {

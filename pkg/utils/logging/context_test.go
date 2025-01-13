@@ -7,7 +7,7 @@ import (
 	"testing"
 
 	"github.com/m-mizutani/gt"
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 )
 
 func TestInjectAndExtract(t *testing.T) {

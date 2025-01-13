@@ -3,13 +3,13 @@ package cli
 import (
 	"context"
 
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 	"github.com/urfave/cli/v3"
 )
 
 func Run(ctx context.Context, args []string) error {
 	app := cli.Command{
-		Name:  "transmith",
+		Name:  "xroute",
 		Usage: "Manipulate and transmit Webhook messages by Rego policies",
 		Commands: []*cli.Command{
 			cmdServe(),

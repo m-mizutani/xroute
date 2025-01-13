@@ -6,9 +6,9 @@ import (
 	"net/http"
 
 	"github.com/m-mizutani/goerr/v2"
-	"github.com/m-mizutani/transmith/pkg/domain/interfaces"
-	"github.com/m-mizutani/transmith/pkg/domain/model"
-	"github.com/m-mizutani/transmith/pkg/utils/logging"
+	"github.com/m-mizutani/xroute/pkg/domain/interfaces"
+	"github.com/m-mizutani/xroute/pkg/domain/model"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 )
 
 func handleRawMessage(r *http.Request, uc interfaces.UseCases) error {

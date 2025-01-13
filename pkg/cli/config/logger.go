@@ -25,7 +25,7 @@ func (x *Logger) Flags() []cli.Flag {
 			Aliases:     []string{"l"},
 			Usage:       "Log level (debug, info, warn, error)",
 			Value:       "info",
-			Sources:     cli.EnvVars("TRANSMITH_LOG_LEVEL"),
+			Sources:     cli.EnvVars("XROUTE_LOG_LEVEL"),
 			Destination: &x.level,
 		},
 		&cli.StringFlag{
@@ -33,7 +33,7 @@ func (x *Logger) Flags() []cli.Flag {
 			Aliases:     []string{"f"},
 			Usage:       "Log format (json, text)",
 			Value:       "text",
-			Sources:     cli.EnvVars("TRANSMITH_LOG_FORMAT"),
+			Sources:     cli.EnvVars("XROUTE_LOG_FORMAT"),
 			Destination: &x.format,
 		},
 		&cli.StringFlag{
@@ -41,7 +41,7 @@ func (x *Logger) Flags() []cli.Flag {
 			Aliases:     []string{"o"},
 			Usage:       "Log output (stdout, stderr, file)",
 			Value:       "stdout",
-			Sources:     cli.EnvVars("TRANSMITH_LOG_OUTPUT"),
+			Sources:     cli.EnvVars("XROUTE_LOG_OUTPUT"),
 			Destination: &x.output,
 		},
 	}
