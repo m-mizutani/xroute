@@ -93,7 +93,7 @@ func handlePubSubMessage(r *http.Request, uc interfaces.UseCases) error {
 		}
 	}
 
-	if err := uc.Transmit(ctx, msg); err != nil {
+	if err := uc.Route(ctx, msg); err != nil {
 		return err
 	}
 

@@ -190,8 +190,8 @@ var _ interfaces.UseCases = &UseCasesMock{}
 //
 //		// make and configure a mocked interfaces.UseCases
 //		mockedUseCases := &UseCasesMock{
-//			TransmitFunc: func(ctx context.Context, msg model.Message) error {
-//				panic("mock out the Transmit method")
+//			RouteFunc: func(ctx context.Context, msg model.Message) error {
+//				panic("mock out the Route method")
 //			},
 //		}
 //
@@ -200,26 +200,26 @@ var _ interfaces.UseCases = &UseCasesMock{}
 //
 //	}
 type UseCasesMock struct {
-	// TransmitFunc mocks the Transmit method.
-	TransmitFunc func(ctx context.Context, msg model.Message) error
+	// RouteFunc mocks the Route method.
+	RouteFunc func(ctx context.Context, msg model.Message) error
 
 	// calls tracks calls to the methods.
 	calls struct {
-		// Transmit holds details about calls to the Transmit method.
-		Transmit []struct {
+		// Route holds details about calls to the Route method.
+		Route []struct {
 			// Ctx is the ctx argument value.
 			Ctx context.Context
 			// Msg is the msg argument value.
 			Msg model.Message
 		}
 	}
-	lockTransmit sync.RWMutex
+	lockRoute sync.RWMutex
 }
 
-// Transmit calls TransmitFunc.
-func (mock *UseCasesMock) Transmit(ctx context.Context, msg model.Message) error {
-	if mock.TransmitFunc == nil {
-		panic("UseCasesMock.TransmitFunc: method is nil but UseCases.Transmit was just called")
+// Route calls RouteFunc.
+func (mock *UseCasesMock) Route(ctx context.Context, msg model.Message) error {
+	if mock.RouteFunc == nil {
+		panic("UseCasesMock.RouteFunc: method is nil but UseCases.Route was just called")
 	}
 	callInfo := struct {
 		Ctx context.Context
@@ -228,17 +228,17 @@ func (mock *UseCasesMock) Transmit(ctx context.Context, msg model.Message) error
 		Ctx: ctx,
 		Msg: msg,
 	}
-	mock.lockTransmit.Lock()
-	mock.calls.Transmit = append(mock.calls.Transmit, callInfo)
-	mock.lockTransmit.Unlock()
-	return mock.TransmitFunc(ctx, msg)
+	mock.lockRoute.Lock()
+	mock.calls.Route = append(mock.calls.Route, callInfo)
+	mock.lockRoute.Unlock()
+	return mock.RouteFunc(ctx, msg)
 }
 
-// TransmitCalls gets all the calls that were made to Transmit.
+// RouteCalls gets all the calls that were made to Route.
 // Check the length with:
 //
-//	len(mockedUseCases.TransmitCalls())
-func (mock *UseCasesMock) TransmitCalls() []struct {
+//	len(mockedUseCases.RouteCalls())
+func (mock *UseCasesMock) RouteCalls() []struct {
 	Ctx context.Context
 	Msg model.Message
 } {
@@ -246,8 +246,8 @@ func (mock *UseCasesMock) TransmitCalls() []struct {
 		Ctx context.Context
 		Msg model.Message
 	}
-	mock.lockTransmit.RLock()
-	calls = mock.calls.Transmit
-	mock.lockTransmit.RUnlock()
+	mock.lockRoute.RLock()
+	calls = mock.calls.Route
+	mock.lockRoute.RUnlock()
 	return calls
 }

@@ -7,5 +7,5 @@ import (
 )
 
 type UseCases interface {
-	Transmit(ctx context.Context, msg model.Message) error
+	Route(ctx context.Context, msg model.Message) error
 }

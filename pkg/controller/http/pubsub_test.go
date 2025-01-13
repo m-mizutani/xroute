@@ -19,7 +19,7 @@ var pubsubJSON []byte
 
 func TestPubSubJSON(t *testing.T) {
 	uc := &mock.UseCasesMock{
-		TransmitFunc: func(ctx context.Context, msg model.Message) error {
+		RouteFunc: func(ctx context.Context, msg model.Message) error {
 			return nil
 		},
 	}
@@ -30,7 +30,7 @@ func TestPubSubJSON(t *testing.T) {
 	srv.ServeHTTP(w, r)
 
 	gt.Equal(t, w.Code, 200)
-	gt.A(t, uc.TransmitCalls()).Length(1).At(0, func(t testing.TB, v struct {
+	gt.A(t, uc.RouteCalls()).Length(1).At(0, func(t testing.TB, v struct {
 		Ctx context.Context
 		Msg model.Message
 	}) {
@@ -45,7 +45,7 @@ var pubsubText []byte
 
 func TestPubSubText(t *testing.T) {
 	uc := &mock.UseCasesMock{
-		TransmitFunc: func(ctx context.Context, msg model.Message) error {
+		RouteFunc: func(ctx context.Context, msg model.Message) error {
 			return nil
 		},
 	}
@@ -56,7 +56,7 @@ func TestPubSubText(t *testing.T) {
 	srv.ServeHTTP(w, r)
 
 	gt.Equal(t, w.Code, 200)
-	gt.A(t, uc.TransmitCalls()).Length(1).At(0, func(t testing.TB, v struct {
+	gt.A(t, uc.RouteCalls()).Length(1).At(0, func(t testing.TB, v struct {
 		Ctx context.Context
 		Msg model.Message
 	}) {
@@ -85,7 +85,7 @@ func TestPubSubAuth(t *testing.T) {
 	srv.ServeHTTP(w, r)
 
 	gt.Equal(t, w.Code, 200)
-	gt.A(t, uc.TransmitCalls()).Length(1).At(0, func(t testing.TB, v struct {
+	gt.A(t, uc.RouteCalls()).Length(1).At(0, func(t testing.TB, v struct {
 		Ctx context.Context
 		Msg model.Message
 	}) {

@@ -41,7 +41,7 @@ func handleSNSSchema(r *http.Request, uc *usecase.UseCase) error {
 		}
 
 	case "Notification":
-		if err := uc.Transmit(ctx, message.Message); err != nil {
+		if err := uc.Route(ctx, message.Message); err != nil {
 			return err
 		}
 	}

@@ -36,5 +36,5 @@ func TestTransmitSlack(t *testing.T) {
 		Schema: "for_slack",
 		Data:   "Hello, Slack",
 	}
-	gt.NoError(t, uc.Transmit(context.Background(), msg))
+	gt.NoError(t, uc.Route(context.Background(), msg))
 }

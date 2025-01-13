@@ -8,7 +8,7 @@ import (
 	"github.com/m-mizutani/xroute/pkg/utils/logging"
 )
 
-func (x *UseCases) Transmit(ctx context.Context, msg model.Message) error {
+func (x *UseCases) Route(ctx context.Context, msg model.Message) error {
 	logger := logging.Extract(ctx)
 	logger.Debug("Run usecase")
 	eb := goerr.NewBuilder(goerr.V("message", msg))
@@ -18,7 +18,7 @@ func (x *UseCases) Transmit(ctx context.Context, msg model.Message) error {
 	}
 	var output model.PolicyTransmitOutput
 
-	if err := x.adaptors.Policy().Query(ctx, "data.transmit", input, &output); err != nil {
+	if err := x.adaptors.Policy().Query(ctx, "data.route", input, &output); err != nil {
 		return eb.Wrap(err, "Failed to query policy")
 	}
 	logger.Debug("Query result", "input", input, "output", output)

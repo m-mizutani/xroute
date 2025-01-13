@@ -1,4 +1,4 @@
-package transmit
+package route
 
 import rego.v1
 

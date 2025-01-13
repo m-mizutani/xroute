@@ -43,7 +43,7 @@ func handleRawMessage(r *http.Request, uc interfaces.UseCases) error {
 		logger.Debug("Parsed data of Pub/Sub as string", "data", string(raw))
 	}
 
-	if err := uc.Transmit(ctx, msg); err != nil {
+	if err := uc.Route(ctx, msg); err != nil {
 		return err
 	}
 
