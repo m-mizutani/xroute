@@ -12,7 +12,14 @@ import (
 	"github.com/m-mizutani/xroute/pkg/controller/http"
 	"github.com/m-mizutani/xroute/pkg/domain/model"
 	"github.com/m-mizutani/xroute/pkg/mock"
+	"github.com/m-mizutani/xroute/pkg/utils/logging"
 )
+
+func init() {
+	if _, ok := os.LookupEnv("TEST_ENABLE_LOGGER"); !ok {
+		logging.Disable()
+	}
+}
 
 //go:embed testdata/pubsub_json.json
 var pubsubJSON []byte
@@ -76,7 +83,11 @@ func TestPubSubAuth(t *testing.T) {
 		t.Skip("TEST_GOOGLE_EMAIL is not set")
 	}
 
-	uc := &mock.UseCasesMock{}
+	uc := &mock.UseCasesMock{
+		RouteFunc: func(ctx context.Context, msg model.Message) error {
+			return nil
+		},
+	}
 	srv := http.New(uc)
 
 	r := httptest.NewRequest("POST", "/msg/pubsub/json_schema", bytes.NewReader(pubsubJSON))
