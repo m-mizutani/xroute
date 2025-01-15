@@ -1,0 +1,19 @@
+{
+  "message": {
+    "attributes": {
+      "bucketId": "mizutani-test",
+      "eventTime": "2024-06-16T02:53:46.032367Z",
+      "eventType": "OBJECT_FINALIZE",
+      "notificationConfig": "projects/_/buckets/mizutani-test/notificationConfigs/6",
+      "objectGeneration": "1718506426029008",
+      "objectId": "test-key/1c04d5b6-a079-47ce-ac7c-a3f014566064.txt",
+      "payloadFormat": "JSON_API_V1"
+    },
+    "data": "SGVsbG8sIFdvcmxk",
+    "messageId": "11523869907369307",
+    "message_id": "11523869907369307",
+    "publishTime": "2024-06-16T02:53:46.174Z",
+    "publish_time": "2024-06-16T02:53:46.174Z"
+  },
+  "subscription": "projects/mizutani-sandbox/subscriptions/to-httpdump"
+}
