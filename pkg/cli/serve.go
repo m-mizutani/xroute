@@ -18,7 +18,9 @@ import (
 
 func cmdServe() *cli.Command {
 	var (
-		addr   string
+		addr                string
+		githubWebhookSecret string
+
 		logger config.Logger
 		policy config.Policy
 		slack  config.Slack
@@ -32,6 +34,13 @@ func cmdServe() *cli.Command {
 			Usage:       "Address to listen on",
 			Sources:     cli.EnvVars("XROUTE_ADDR"),
 			Destination: &addr,
+		},
+		&cli.StringFlag{
+			Name:        "github-webhook-secret",
+			Value:       "",
+			Usage:       "Secret key for GitHub webhook",
+			Sources:     cli.EnvVars("XROUTE_GITHUB_WEBHOOK_SECRET"),
+			Destination: &githubWebhookSecret,
 		},
 	},
 		logger.Flags(),
@@ -55,6 +64,7 @@ func cmdServe() *cli.Command {
 
 			newLogger.Info("Starting server",
 				"addr", addr,
+				"github-webhook-secret", len(githubWebhookSecret) > 0,
 				"logger", logger,
 				"policy", policy,
 				"slack", slack,
@@ -74,10 +84,16 @@ func cmdServe() *cli.Command {
 			adapters := adapter.New(adapterOptions...)
 			uc := usecase.New(adapters)
 
+			// Start HTTP server
+			var serverOptions []http_server.Option
+			if len(githubWebhookSecret) > 0 {
+				serverOptions = append(serverOptions, http_server.WithGitHubWebhookSecret(githubWebhookSecret))
+			}
+
 			s := &http.Server{
 				Addr:              addr,
 				ReadHeaderTimeout: 3 * time.Second,
-				Handler:           http_server.New(uc),
+				Handler:           http_server.New(uc, serverOptions...),
 			}
 
 			errCh := make(chan error, 1)

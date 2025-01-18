@@ -13,11 +13,28 @@ import (
 )
 
 type Server struct {
-	router *chi.Mux
+	router              *chi.Mux
+	githubWebhookSecret string
 }
 
-func New(uc interfaces.UseCases) *Server {
+type Option func(*Server)
+
+func WithGitHubWebhookSecret(secret string) Option {
+	return func(s *Server) {
+		s.githubWebhookSecret = secret
+	}
+}
+
+func New(uc interfaces.UseCases, options ...Option) *Server {
 	r := chi.NewRouter()
+	server := &Server{
+		router: r,
+	}
+
+	for _, opt := range options {
+		opt(server)
+	}
+
 	r.Use(logger)
 
 	r.Get("/health", func(w http.ResponseWriter, r *http.Request) {
@@ -40,11 +57,17 @@ func New(uc interfaces.UseCases) *Server {
 			}
 			safe.Write(r.Context(), w, []byte("OK"))
 		})
+
+		r.Post("/github/webhook", func(w http.ResponseWriter, r *http.Request) {
+			if err := handleGitHubWebhook(r, uc, server.githubWebhookSecret); err != nil {
+				handleError(r.Context(), w, err)
+				return
+			}
+			safe.Write(r.Context(), w, []byte("OK"))
+		})
 	})
 
-	return &Server{
-		router: r,
-	}
+	return server
 }
 
 func handleError(ctx context.Context, w http.ResponseWriter, err error) {

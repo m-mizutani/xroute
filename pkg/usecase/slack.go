@@ -27,7 +27,7 @@ func transmitSlack(ctx context.Context, msg model.SlackMessage, client interface
 	}
 
 	if _, _, err := client.PostMessageContext(ctx, msg.Channel, options...); err != nil {
-		return goerr.Wrap(err, "failed to post slack message", goerr.V("message", msg))
+		return goerr.Wrap(err, "failed to post slack message", goerr.V("message", msg), goerr.V("attachment", attachment))
 	}
 
 	return nil
