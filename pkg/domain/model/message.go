@@ -26,7 +26,30 @@ type Message struct {
 // AuthContext is authentication context of the message.
 type AuthContext struct {
 	// Google is parsed Google ID Token. It's set if the message is authenticated by Google ID Token.
-	Google *GoogleIDToken `json:"google"`
+	Google *GoogleIDToken `json:"google,omitempty"`
+
+	// GitHub is parsed GitHub authentication information.
+	GitHub *AuthContextGitHub `json:"github,omitempty"`
+}
+
+// AuthContextGitHub is GitHub authentication information.
+type AuthContextGitHub struct {
+	Webhook *GitHubWebhookAuth `json:"webhook"`
+}
+
+// GitHubWebhookAuth is parsed GitHub Webhook authentication information.
+type GitHubWebhookAuth struct {
+	// HookID is from "X-GitHub-Hook-ID" header.
+	HookID int64 `json:"hook_id"`
+
+	// TargetID is from "X-GitHub-Hook-Target-ID" header.
+	TargetID int64 `json:"target_id"`
+
+	// TargetType is from "X-GitHub-Hook-Target-Type" header.
+	TargetType string `json:"target_type"`
+
+	// Valid is true if the webhook is validated by secret key.
+	Valid bool `json:"valid"`
 }
 
 // GoogleIDToken is parsed Google ID Token.

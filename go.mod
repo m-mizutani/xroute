@@ -6,6 +6,7 @@ require (
 	github.com/fatih/color v1.16.0
 	github.com/go-chi/chi/v5 v5.2.0
 	github.com/go-test/deep v1.0.4
+	github.com/google/go-github/v68 v68.0.0
 	github.com/google/uuid v1.6.0
 	github.com/lestrrat-go/jwx/v2 v2.1.3
 	github.com/m-mizutani/clog v0.0.8-0.20250109003148-8c214a1f3c2d
@@ -29,6 +30,7 @@ require (
 	github.com/gobwas/glob v0.2.3 // indirect
 	github.com/goccy/go-json v0.10.3 // indirect
 	github.com/google/go-cmp v0.6.0 // indirect
+	github.com/google/go-querystring v1.1.0 // indirect
 	github.com/gorilla/mux v1.8.1 // indirect
 	github.com/gorilla/websocket v1.4.2 // indirect
 	github.com/k0kubun/pp/v3 v3.2.0 // indirect
