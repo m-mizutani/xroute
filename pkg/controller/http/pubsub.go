@@ -27,11 +27,6 @@ type pubsubMessage struct {
 	Subscription string `json:"subscription"`
 }
 
-func trimToken(token string) string {
-	e := min(len(token), 8)
-	return token[:e] + "..."
-}
-
 func handlePubSubMessage(r *http.Request, uc interfaces.UseCases) error {
 	ctx := r.Context()
 	logger := logging.Extract(ctx)
