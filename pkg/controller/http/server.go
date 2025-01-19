@@ -58,12 +58,22 @@ func New(uc interfaces.UseCases, options ...Option) *Server {
 			safe.Write(r.Context(), w, []byte("OK"))
 		})
 
-		r.Post("/github/webhook", func(w http.ResponseWriter, r *http.Request) {
-			if err := handleGitHubWebhook(r, uc, server.githubWebhookSecret); err != nil {
-				handleError(r.Context(), w, err)
-				return
-			}
-			safe.Write(r.Context(), w, []byte("OK"))
+		r.Route("/github", func(r chi.Router) {
+			r.Post("/webhook", func(w http.ResponseWriter, r *http.Request) {
+				if err := handleGitHubWebhook(r, uc, server.githubWebhookSecret); err != nil {
+					handleError(r.Context(), w, err)
+					return
+				}
+				safe.Write(r.Context(), w, []byte("OK"))
+			})
+
+			r.Post("/actions", func(w http.ResponseWriter, r *http.Request) {
+				if err := handleGitHubActions(r, uc); err != nil {
+					handleError(r.Context(), w, err)
+					return
+				}
+				safe.Write(r.Context(), w, []byte("OK"))
+			})
 		})
 	})
 

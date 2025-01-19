@@ -26,7 +26,7 @@ func handleGitHubWebhook(r *http.Request, uc interfaces.UseCases, secret string)
 	}
 
 	msg := model.Message{
-		Source: "github",
+		Source: "github.webhook",
 		Schema: r.Header.Get("X-GitHub-Event"),
 		Data:   event,
 		Body:   payload,
