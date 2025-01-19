@@ -1,0 +1,25 @@
+name: notify
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: "URL to send POST request"
+        required: true
+      message:
+        description: "Message to send"
+        required: false
+        default: "Hello"
+
+jobs:
+  post_json:
+    runs-on: ubuntu-latest
+
+    permissions:
+      id-token: write
+
+    steps:
+      - uses: m-mizutani/xroute-action@main
+        with:
+          url: ${{ github.event.inputs.url }}
+          message: ${{ github.event.inputs.message }}

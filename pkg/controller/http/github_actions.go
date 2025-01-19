@@ -14,6 +14,10 @@ import (
 	"github.com/m-mizutani/xroute/pkg/domain/model"
 )
 
+const (
+	githubJwtIssuer = "https://token.actions.githubusercontent.com"
+)
+
 func validateGitHubActionToken(ctx context.Context, authHdr string) (map[string]any, error) {
 	hdr := strings.SplitN(authHdr, " ", 2)
 
@@ -22,7 +26,8 @@ func validateGitHubActionToken(ctx context.Context, authHdr string) (map[string]
 		return nil, nil
 	}
 
-	jwksURL := "https://token.actions.githubusercontent.com/.well-known/jwks"
+	jwksURL := githubJwtIssuer + "/.well-known/jwks"
+
 	token := hdr[1]
 
 	set, err := jwk.Fetch(ctx, jwksURL)
@@ -30,7 +35,10 @@ func validateGitHubActionToken(ctx context.Context, authHdr string) (map[string]
 		return nil, goerr.Wrap(err, "failed to fetch JWK set")
 	}
 
-	parsed, err := jwt.ParseString(token, jwt.WithKeySet(set))
+	parsed, err := jwt.ParseString(token,
+		jwt.WithKeySet(set),
+		jwt.WithIssuer(githubJwtIssuer),
+	)
 	if err != nil {
 		return nil, goerr.Wrap(err, "failed to parse JWT token as GitHub Action token", goerr.V("token", trimToken(hdr[1])))
 	}
