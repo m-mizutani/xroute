@@ -30,6 +30,7 @@ func handleGitHubWebhook(r *http.Request, uc interfaces.UseCases, secret string)
 		Schema: r.Header.Get("X-GitHub-Event"),
 		Data:   event,
 		Body:   payload,
+		Header: cloneHeader(r.Header),
 		Auth: model.AuthContext{
 			GitHub: &model.AuthContextGitHub{
 				Webhook: &model.GitHubWebhookAuth{
