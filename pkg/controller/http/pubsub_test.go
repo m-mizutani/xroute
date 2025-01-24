@@ -41,7 +41,7 @@ func TestPubSubJSON(t *testing.T) {
 		Ctx context.Context
 		Msg model.Message
 	}) {
-		msg := gt.Cast[map[string]any](t, v.Msg.Data)
+		msg := gt.Cast[map[string]any](t, v.Msg.Body)
 		gt.Equal(t, msg["kind"], "storage#object")
 		gt.Equal(t, v.Msg.Schema, "json_schema")
 	})
@@ -67,7 +67,7 @@ func TestPubSubText(t *testing.T) {
 		Ctx context.Context
 		Msg model.Message
 	}) {
-		msg := gt.Cast[string](t, v.Msg.Data)
+		msg := gt.Cast[string](t, v.Msg.Body)
 		gt.Equal(t, msg, "Hello, World")
 		gt.Equal(t, v.Msg.Schema, "text_schema")
 	})

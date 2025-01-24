@@ -70,11 +70,11 @@ func handlePubSubMessage(r *http.Request, uc interfaces.UseCases) error {
 	// Pub/Sub message data is free format. If it can be parsed as JSON, it will be stored in msg.Data
 	var data any
 	if err := json.Unmarshal(pubsubMsg.Message.Data, &data); err == nil {
-		msg.Data = data
+		msg.Body = data
 		logger.Debug("Parsed data of Pub/Sub as JSON", "data", data)
 	} else {
-		msg.Data = string(pubsubMsg.Message.Data)
-		logger.Debug("Data of Pub/Sub can not be parsed, use it as raw", "data", msg.Data)
+		msg.Body = string(pubsubMsg.Message.Data)
+		logger.Debug("Data of Pub/Sub can not be parsed, use it as raw", "data", pubsubMsg.Message.Data)
 	}
 
 	// Extract Google ID token from Authorization header. Empty Authorization header is allowed, but ID token validation error is not allowed and return error.

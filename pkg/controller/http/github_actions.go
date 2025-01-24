@@ -81,8 +81,7 @@ func handleGitHubActions(r *http.Request, uc interfaces.UseCases) error {
 		Source: "github.actions",
 		Schema: "actions",
 		Header: cloneHeader(r.Header),
-		Body:   body,
-		Data:   payload,
+		Body:   payload,
 		Auth: model.AuthContext{
 			GitHub: &model.AuthContextGitHub{
 				Actions: claims,

@@ -36,10 +36,10 @@ func handleRawMessage(r *http.Request, uc interfaces.UseCases) error {
 		if err := json.Unmarshal(raw, &data); err != nil {
 			return goerr.Wrap(err, "Failed to unmarshal JSON", goerr.V("data", string(raw)))
 		}
-		msg.Data = data
+		msg.Body = data
 		logger.Debug("Parsed data of Pub/Sub as JSON", "data", data)
 	} else {
-		msg.Data = string(raw)
+		msg.Body = string(raw)
 		logger.Debug("Parsed data of Pub/Sub as string", "data", string(raw))
 	}
 
