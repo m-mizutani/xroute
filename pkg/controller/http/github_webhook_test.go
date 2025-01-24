@@ -111,7 +111,7 @@ func TestHandleGitHubWebhook(t *testing.T) {
 						gt.Equal(t, auth.Valid, true)
 					}
 
-					data := v.Msg.Data.(*github.IssuesEvent)
+					data := v.Msg.Body.(*github.IssuesEvent)
 					gt.NotEqual(t, data, nil)
 					gt.NotEqual(t, data.Action, nil)
 					gt.Equal(t, *data.Action, "opened")

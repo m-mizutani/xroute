@@ -13,11 +13,8 @@ type Message struct {
 	// Header is HTTP header of the message.
 	Header map[string]string `json:"header"`
 
-	// Body is parsed raw HTTP body. If content-type is application/json, it's parsed as JSON. Otherwise, it's raw bytes.
+	// Body is parsed HTTP body. If content-type is application/json, it's parsed as JSON. Otherwise, it's raw bytes.
 	Body any `json:"body"`
-
-	// Data is parsed data part of the message. It's free format and can be any type. If it's JSON, it's parsed as JSON. Otherwise, it's raw bytes.
-	Data any `json:"data"`
 
 	// Auth is authentication information of the message. Authentication message is extracted from header mainly, e.g. JWT token, Secret key, etc.
 	Auth AuthContext `json:"auth"`
