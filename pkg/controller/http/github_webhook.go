@@ -1,6 +1,7 @@
 package http
 
 import (
+	"encoding/json"
 	"net/http"
 	"strconv"
 
@@ -20,15 +21,15 @@ func handleGitHubWebhook(r *http.Request, uc interfaces.UseCases, secret string)
 		secretValidated = true
 	}
 
-	event, err := github.ParseWebHook(github.WebHookType(r), payload)
-	if err != nil {
-		return goerr.Wrap(err, "Failed to parse GitHub webhook event", goerr.V("payload", string(payload)))
+	var body any
+	if err := json.Unmarshal(payload, &body); err != nil {
+		return goerr.Wrap(err, "Failed to unmarshal JSON", goerr.V("payload", string(payload)))
 	}
 
 	msg := model.Message{
 		Source: "github.webhook",
 		Schema: r.Header.Get("X-GitHub-Event"),
-		Body:   event,
+		Body:   body,
 		Header: cloneHeader(r.Header),
 		Auth: model.AuthContext{
 			GitHub: &model.AuthContextGitHub{

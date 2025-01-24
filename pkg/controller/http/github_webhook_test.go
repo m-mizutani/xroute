@@ -9,7 +9,6 @@ import (
 	"net/http"
 	"testing"
 
-	"github.com/google/go-github/v68/github"
 	"github.com/m-mizutani/gt"
 	http_server "github.com/m-mizutani/xroute/pkg/controller/http"
 	"github.com/m-mizutani/xroute/pkg/domain/model"
@@ -111,10 +110,9 @@ func TestHandleGitHubWebhook(t *testing.T) {
 						gt.Equal(t, auth.Valid, true)
 					}
 
-					data := v.Msg.Body.(*github.IssuesEvent)
+					data := v.Msg.Body.(map[string]interface{})
 					gt.NotEqual(t, data, nil)
-					gt.NotEqual(t, data.Action, nil)
-					gt.Equal(t, *data.Action, "opened")
+					gt.Equal(t, data["action"], "opened")
 				})
 			}
 		})
